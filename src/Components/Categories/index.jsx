@@ -1,9 +1,13 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory, reset } from "../../store/categories";
 import { Button, ButtonGroup } from "@mui/material";
 
 
-const Categories = ({ setCategory, categories, reset, activeCategory, products }) => {
+const Categories = () => {
+
+  const { categories } = useSelector(state => state.categories);
+  const dispatch = useDispatch();
+
   return (
     <>
       <h2>Browse our Categories</h2>
@@ -15,7 +19,7 @@ const Categories = ({ setCategory, categories, reset, activeCategory, products }
             <Button
               key={`category-${idx}`}
               onClick={() => {
-                setCategory(category);
+                dispatch(setCategory(category));
               }}
             >
               {category.displayName}
@@ -32,14 +36,14 @@ const Categories = ({ setCategory, categories, reset, activeCategory, products }
   )
 };
 
-const mapStateToProps = ({ categories }) => {
-  return {
-    categories: categories.categories,
-    activeCategory: categories.activeCategory,
-    products: categories.products,
-  };
-}
+// const mapStateToProps = ({ categories }) => {
+//   return {
+//     categories: categories.categories,
+//     activeCategory: categories.activeCategory,
+//     products: categories.products,
+//   };
+// }
 
-const mapDispatchToProps = { setCategory, reset };
+// const mapDispatchToProps = { setCategory, reset };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default Categories;

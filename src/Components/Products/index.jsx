@@ -1,7 +1,10 @@
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-const Products = ({ products }) => {
+const Products = () => {
+
+  const { products } = useSelector(state => state.categories);
+
   return (
     <>
       <h1>Products</h1>
@@ -35,14 +38,14 @@ const Products = ({ products }) => {
   )
 }
 
-const mapStateToProps = ({ categories }) => {
-  return {
-    categories: categories.categories,
-    activeCategory: categories.activeCategory,
-    products: categories.products,
-  };
-}
+// const mapStateToProps = ({ categories }) => {
+//   return {
+//     categories: categories.categories,
+//     activeCategory: categories.activeCategory,
+//     products: categories.products,
+//   };
+// }
 
-const mapDispatchToProps = {};
+// const mapDispatchToProps = {};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;
