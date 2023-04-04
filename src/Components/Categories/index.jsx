@@ -1,45 +1,67 @@
-import { connect } from "react-redux";
-import { setCategory, reset } from "../../store/categories";
-import { Button, ButtonGroup } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategory, reset } from "../../store/actions";
+import { Button, ButtonGroup, Container } from "@mui/material";
+import SimpleCart from "../SimpleCart";
 
 
-const Categories = ({ setCategory, categories, reset, activeCategory, products }) => {
+const Categories = () => {
+
+  const { categories } = useSelector(state => state);
+  const dispatch = useDispatch();
+
   return (
     <>
-      <h2>Browse our Categories</h2>
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
 
-      <ButtonGroup variant="text" aria-label="text button group">
-      {
-        categories.map((category, idx) => {
-          return (
+      >
+        <Container>
+          <h2>Browse our Categories</h2>
+
+          <ButtonGroup variant="text" aria-label="text button group">
+            {
+              categories.categories.map((category, idx) => {
+                return (
+                  <Button
+                    key={`category-${idx}`}
+                    onClick={() => {
+                      dispatch(setCategory(category));
+                    }}
+                  >
+                    {category.displayName}
+                  </Button>
+                )
+              })
+            }
             <Button
-              key={`category-${idx}`}
-              onClick={() => {
-                setCategory(category);
-              }}
-            >
-              {category.displayName}
+              onClick={() => reset()}
+            >RESET
             </Button>
-          )
-        })
-      }
-      <Button 
-      onClick={() => reset()}
-      >RESET
-      </Button>
-      </ButtonGroup>
+          </ButtonGroup>
+        </Container>
+
+
+        <SimpleCart />
+
+
+      </Container>
     </>
   )
 };
 
-const mapStateToProps = ({ categories }) => {
-  return {
-    categories: categories.categories,
-    activeCategory: categories.activeCategory,
-    products: categories.products,
-  };
-}
+// const mapStateToProps = ({ categories }) => {
+//   return {
+//     categories: categories.categories,
+//     activeCategory: categories.activeCategory,
+//     products: categories.products,
+//   };
+// }
 
-const mapDispatchToProps = { setCategory, reset };
+// const mapDispatchToProps = { setCategory, reset };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+export default Categories;
