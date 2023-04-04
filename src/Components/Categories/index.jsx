@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
-import { setCategory, filterProducts, reset } from "../../store/categories";
+import { setCategory, reset } from "../../store/categories";
 import { Button, ButtonGroup } from "@mui/material";
 
 
-const Categories = ({ setCategory, filterProducts, categories, reset, activeCategory, products }) => {
+const Categories = ({ setCategory, categories, reset, activeCategory, products }) => {
   return (
     <>
       <h2>Browse our Categories</h2>
@@ -16,7 +16,6 @@ const Categories = ({ setCategory, filterProducts, categories, reset, activeCate
               key={`category-${idx}`}
               onClick={() => {
                 setCategory(category);
-                filterProducts();
               }}
             >
               {category.displayName}
@@ -41,6 +40,6 @@ const mapStateToProps = ({ categories }) => {
   };
 }
 
-const mapDispatchToProps = { setCategory, filterProducts, reset };
+const mapDispatchToProps = { setCategory, reset };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Categories);
