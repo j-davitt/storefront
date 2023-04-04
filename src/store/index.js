@@ -6,9 +6,6 @@ let reducers = combineReducers({
   categories: categoriesReducer,
 })
 
-const store = () => {
-  return legacy_createStore(reducers, composeWithDevTools());
-}
+const store = () =>  legacy_createStore(reducers, composeWithDevTools());
 
 export default store();
-

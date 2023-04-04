@@ -19,17 +19,13 @@ const initialState = {
 
 const categoriesReducer = (state = initialState, action) => {
   switch(action.type){
-    case 'SET_CATEGORY':
+    case 'SET':
       return {
         ...state,
         activeCategory: action.payload.name,
-        products: initialState.products,
+        products: initialState.products.filter(e => e.category === action.payload.name)
       }
-    case 'FILTER_PRODUCTS':
-      return {
-        ...state,
-        products: state.products.filter(e => e.category === state.activeCategory)
-      }
+
     case 'RESET':
       return initialState;
     default:
@@ -39,17 +35,11 @@ const categoriesReducer = (state = initialState, action) => {
 
 export const setCategory = (category) => {
   return {
-    type: 'SET_CATEGORY',
+    type: 'SET',
     payload: category,
   }
 };
 
-export const filterProducts = () => {
-  return {
-    type: 'FILTER_PRODUCTS',
-    payload: {},
-  }
-};
 
 export const reset = () => {
   return {
