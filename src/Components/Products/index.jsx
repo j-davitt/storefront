@@ -24,8 +24,9 @@ const Products = () => {
                     }}
                   >
                     <CardMedia
-                      sx={{ height: 140 }}
-                      image="./PH.png"
+                      component="img"
+                      image={`https://source.unsplash.com/random?${product.name}`}
+                      title={product.name}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div">{product.name}</Typography>
