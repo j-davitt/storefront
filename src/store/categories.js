@@ -1,9 +1,9 @@
 
 const initialState = {
   categories: [
-    { name: 'electronics', displayName: 'Electronics' },
-    { name: 'food', displayName: 'Food' },
-    { name: 'clothing', displayName: 'Clothing' },
+    // { name: 'electronics', displayName: 'Electronics' },
+    // { name: 'food', displayName: 'Food' },
+    // { name: 'clothing', displayName: 'Clothing' },
   ],
   activeCategory: ''
 };
@@ -15,7 +15,11 @@ const categoriesReducer = (state = initialState, action) => {
         ...state,
         activeCategory: action.payload.name,
       }
-
+    case 'INITIAL_SET':
+      return {
+        ...state,
+        categories: action.payload,
+      }
     case 'RESET':
       return initialState;
     default:

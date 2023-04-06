@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const setCategory = (category) => {
   return {
     type: 'SET',
@@ -25,4 +27,18 @@ export const removeFromCart = (product) => {
     payload: product,
   }
 };
+
+
+// not working below
+export const setCategories = (categories) => {
+  return {
+    type: 'INITIAL_SET',
+    payload: categories,
+  }
+}
+
+export const getCategories = () => async (dispatch) => {
+  const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+  dispatch(setCategories(response.data.results));
+}
 
