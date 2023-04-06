@@ -1,13 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory, reset } from "../../store/actions";
+import { setCategory, reset, getCategories } from "../../store/actions";
 import { Button, ButtonGroup, Container } from "@mui/material";
 import SimpleCart from "../SimpleCart";
+import { useEffect } from "react";
 
 
 const Categories = () => {
 
   const { categories } = useSelector(state => state);
   const dispatch = useDispatch();
+
+  // added useEffect
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   return (
     <>
