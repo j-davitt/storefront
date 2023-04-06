@@ -13,9 +13,9 @@ let tempState = [];
 const productsReducer = (state = initialState, action) => {
   switch(action.type){
     case 'SET':
-
-      return tempState.filter(e => e.category === action.payload.name)
-      
+      return tempState.filter(e => e.category === action.payload.name);
+    case 'UPDATE':
+      return tempState = tempState.map(e => e.name === action.payload.name ? action.payload : e);
     case 'INITIAL_SET_PROD':
       tempState = [...action.payload];
       return action.payload;

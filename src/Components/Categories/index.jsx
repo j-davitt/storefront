@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory, reset, getCategories, getProducts } from "../../store/actions";
+import { setCategory, getCategories, getProducts } from "../../store/actions";
 import { Button, ButtonGroup, Container } from "@mui/material";
 import SimpleCart from "../SimpleCart";
 import { useEffect } from "react";
@@ -45,10 +45,7 @@ const Categories = () => {
                 )
               })
             }
-            <Button
-              onClick={() => reset()}
-            >RESET
-            </Button>
+
           </ButtonGroup>
         </Container>
 
