@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory, reset, getCategories } from "../../store/actions";
+import { setCategory, reset, getCategories, getProducts } from "../../store/actions";
 import { Button, ButtonGroup, Container } from "@mui/material";
 import SimpleCart from "../SimpleCart";
 import { useEffect } from "react";
@@ -13,6 +13,7 @@ const Categories = () => {
   // added useEffect
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getProducts());
   }, []);
 
   return (
@@ -39,7 +40,7 @@ const Categories = () => {
                       dispatch(setCategory(category));
                     }}
                   >
-                    {category.displayName}
+                    {category.name}
                   </Button>
                 )
               })

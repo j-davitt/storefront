@@ -30,10 +30,17 @@ export const removeFromCart = (product) => {
 
 
 // not working below
-export const setCategories = (categories) => {
+export const setCategories = (data) => {
   return {
     type: 'INITIAL_SET',
-    payload: categories,
+    payload: data,
+  }
+}
+
+export const setProducts = (products) => {
+  return {
+    type: 'INITIAL_SET_PROD',
+    payload: products,
   }
 }
 
@@ -42,3 +49,7 @@ export const getCategories = () => async (dispatch) => {
   dispatch(setCategories(response.data.results));
 }
 
+export const getProducts = () => async (dispatch) => {
+  const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+  dispatch(setProducts(response.data.results));
+}
