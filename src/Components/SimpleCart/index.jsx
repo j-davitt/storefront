@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../store/actions";
+import { removeFromCart } from "../../store/cart";
 import { Box, IconButton, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -34,8 +34,8 @@ const SimpleCart = () => {
                 }}
               >
                 <Typography>{item.name}</Typography>
-                <IconButton>
-                  <DeleteIcon fontSize="small" onClick={() => dispatch(removeFromCart(item))} />
+                <IconButton onClick={() => dispatch(removeFromCart(item))}>
+                  <DeleteIcon fontSize="small" />
                 </IconButton>
               </Box>
             )
