@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCategory, getCategories, getProducts } from "../../store/actions";
+import { getCategories, getProducts } from "../../store/actions";
 import { Button, ButtonGroup, Container } from "@mui/material";
 import SimpleCart from "../SimpleCart";
 import { useEffect } from "react";
+import { setCategory } from "../../store/categories";
+import { setProducts } from "../../store/products";
 
 
 const Categories = () => {
@@ -15,6 +17,11 @@ const Categories = () => {
     dispatch(getCategories());
     dispatch(getProducts());
   }, []);
+
+  const handleClick = (category) => {
+    dispatch(setCategory(category));
+    dispatch(setProducts(category));
+  }
 
   return (
     <>
@@ -37,7 +44,7 @@ const Categories = () => {
                   <Button
                     key={`category-${idx}`}
                     onClick={() => {
-                      dispatch(setCategory(category));
+                      handleClick(category);
                     }}
                   >
                     {category.name}
